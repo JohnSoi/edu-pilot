@@ -1,0 +1,9 @@
+VERSION_PARTS_COUNT: int = 2
+VERSION_PART_LENGTH: int = 2
+VERSION_DELIMITER: str = "."
+
+CORS_LIST_SYMBOL_START: str = "["
+CORS_LIST_DELIMITER: str = ","
+
+BASE_SECRET_KEY: str = "secret"
+BASE_POSTGRES_PASSWORD: str = "postgres"

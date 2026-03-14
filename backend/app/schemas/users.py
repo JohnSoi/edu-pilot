@@ -36,7 +36,7 @@ class UserAuthData(BaseModel):
     login: str = Field(..., min_length=4, max_length=50)
     password: str = Field(..., min_length=settings.PASSWORD_MIN_LENGTH, max_length=20)
 
-    @field_validator("login")
+    @field_validator("password")
     @classmethod
     def validate_password(cls, v: str) -> str:
         valid, error = validate_password_strength(v)
@@ -47,9 +47,9 @@ class UserAuthData(BaseModel):
         raise ValidationError(error)
 
 
-class UserRegisterData(UuidMixin, UserPersonData, UserAuthData):
+class UserRegisterData(UserPersonData, UserAuthData):
     role_code: str
-    branch_uuid: UUID
+    branch_uuid: UUID | None = None
 
 
 class UserPublicData(UuidMixin, UserPersonData): ...

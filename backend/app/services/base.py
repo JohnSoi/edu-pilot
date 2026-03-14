@@ -1,4 +1,5 @@
 from typing import Generic, TypeVar
+from uuid import UUID
 
 from pydantic import BaseModel as PyBaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -18,5 +19,14 @@ class BaseService(Generic[T, T1, T2]):
         self._db: AsyncSession = db
         self._repository: T = self._REPOSITORY(db)
 
-    async def _create(self, payload: T1) -> T2:
+    async def create(self, payload: T1) -> T2:
         return await self._repository.create(payload.model_dump(exclude_unset=True))
+
+    async def list(self, sorting: dict | None = None, filters: dict | None = None, navigation: dict | None = None) -> list[T2]:
+        return await self._repository.list(sorting, filters, navigation)
+
+    async def get(self, entity_id: int) -> T2:
+        return await self._repository.get(entity_id)
+
+    async def get_by_uuid(self, uuid: UUID) -> T2:
+        return await self._repository.get_by_uuid(uuid)

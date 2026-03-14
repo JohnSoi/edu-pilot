@@ -18,4 +18,4 @@ async def create_user(
     db: AsyncSession = Depends(get_db),
     current_user: TokenData = Depends(require_roles([ADMIN_ROLE_CODE, DIRECTOR_ROLE_CODE])),
 ) -> dict:
-    return await UserService(db).create(user_data, current_user)
+    return await UserService(db).register(user_data, current_user)

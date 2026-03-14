@@ -18,8 +18,8 @@ class Users(BaseModel, UuidMixin, TimestampMixin, SoftDeleteMixin):
     date_deactivate: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=True)
     date_birthday: Mapped[date] = mapped_column(Date, nullable=False)
 
-    role_id: Mapped[int] = mapped_column(ForeignKey('roles.id'), primary_key=True)
-    branch_id: Mapped[int] = mapped_column(ForeignKey('branches.id'), primary_key=True)
+    role_id: Mapped[int] = mapped_column(ForeignKey('roles.id'))
+    branch_id: Mapped[int] = mapped_column(ForeignKey('branches.id'))
 
     role = relationship("Roles")
     branch = relationship("Branches")

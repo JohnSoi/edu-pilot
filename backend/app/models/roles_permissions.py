@@ -7,10 +7,10 @@ from .base import BaseModel
 
 
 class RolesPermissions(BaseModel):
-    role_id: Mapped[int] = mapped_column(ForeignKey('roles.id'), primary_key=True)
-    permission_id: Mapped[int] = mapped_column(ForeignKey('permissions.id'), primary_key=True)
+    role_id: Mapped[int] = mapped_column(ForeignKey('roles.id'))
+    permission_id: Mapped[int] = mapped_column(ForeignKey('permissions.id'))
     level_access: Mapped[AccessLevel] = mapped_column(
-        PG_ENUM(AccessLevel, name="access_level", create_type=False),
-        nullable=False, 
+        PG_ENUM(AccessLevel, name="access_level"),
+        nullable=False,
         default=AccessLevel.FORBIDDEN
     )

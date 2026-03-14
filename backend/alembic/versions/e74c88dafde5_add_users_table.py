@@ -1,8 +1,8 @@
 """Add users table
 
-Revision ID: 6cff0fbc853e
-Revises: 850e78404067
-Create Date: 2026-03-14 12:04:22.029427
+Revision ID: e74c88dafde5
+Revises: 49e79ec25af0
+Create Date: 2026-03-14 12:53:57.876167
 
 """
 from typing import Sequence, Union
@@ -12,8 +12,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '6cff0fbc853e'
-down_revision: Union[str, Sequence[str], None] = '850e78404067'
+revision: str = 'e74c88dafde5'
+down_revision: Union[str, Sequence[str], None] = '49e79ec25af0'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
@@ -38,7 +38,7 @@ def upgrade() -> None:
     sa.Column('deleted_at', sa.DateTime(timezone=True), nullable=True),
     sa.ForeignKeyConstraint(['branch_id'], ['branches.id'], ),
     sa.ForeignKeyConstraint(['role_id'], ['roles.id'], ),
-    sa.PrimaryKeyConstraint('role_id', 'branch_id', 'id')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_users_id'), 'users', ['id'], unique=False)
     op.create_index(op.f('ix_users_login'), 'users', ['login'], unique=True)

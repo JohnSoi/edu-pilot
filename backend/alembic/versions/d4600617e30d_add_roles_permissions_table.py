@@ -1,8 +1,8 @@
-"""Create role_permissions table
+"""Add roles_permissions table
 
-Revision ID: d8aced4dc4c3
-Revises: 390d4d9e088f
-Create Date: 2026-03-14 11:21:05.641217
+Revision ID: d4600617e30d
+Revises: 929ee29c4a6a
+Create Date: 2026-03-14 12:53:16.397454
 
 """
 from typing import Sequence, Union
@@ -12,8 +12,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'd8aced4dc4c3'
-down_revision: Union[str, Sequence[str], None] = '390d4d9e088f'
+revision: str = 'd4600617e30d'
+down_revision: Union[str, Sequence[str], None] = '929ee29c4a6a'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
@@ -27,7 +27,7 @@ def upgrade() -> None:
     sa.Column('id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['permission_id'], ['permissions.id'], ),
     sa.ForeignKeyConstraint(['role_id'], ['roles.id'], ),
-    sa.PrimaryKeyConstraint('role_id', 'permission_id', 'id')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_roles_permissions_id'), 'roles_permissions', ['id'], unique=False)
     # ### end Alembic commands ###

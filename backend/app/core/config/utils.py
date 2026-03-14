@@ -1,8 +1,8 @@
 from datetime import date, datetime
 from typing import Any
 
-from .consts import VERSION_PART_LENGTH, CORS_LIST_SYMBOL_START, CORS_LIST_DELIMITER
-from .exceptions import InvalidCorsValue, EmptyDbSettings
+from .consts import CORS_LIST_DELIMITER, CORS_LIST_SYMBOL_START, VERSION_PART_LENGTH
+from .exceptions import EmptyDbSettings, InvalidCorsValue
 from .types import CorsValueType, PydanticSettingsInfoType
 
 

@@ -4,7 +4,7 @@ from typing import Literal
 from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-from .consts import BASE_SECRET_KEY, BASE_POSTGRES_PASSWORD
+from .consts import BASE_POSTGRES_PASSWORD, BASE_SECRET_KEY
 from .types import CorsValueType
 from .utils import get_or_create_app_version, get_valid_cors, get_valid_db_url, get_valid_redis_url
 from .validators import get_valid_app_version

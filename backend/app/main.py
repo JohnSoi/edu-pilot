@@ -1,5 +1,7 @@
 from fastapi import FastAPI
-from .core import get_settings, Settings
+
+from .core.config import Settings, get_settings
+from .core.security import *
 
 settings: Settings = get_settings()
 

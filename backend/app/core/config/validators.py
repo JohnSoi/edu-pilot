@@ -1,4 +1,4 @@
-from .consts import VERSION_DELIMITER, VERSION_PARTS_COUNT, VERSION_PART_LENGTH
+from .consts import VERSION_DELIMITER, VERSION_PART_LENGTH, VERSION_PARTS_COUNT
 from .exceptions import EmptyVersion, InvalidVersion
 
 

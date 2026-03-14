@@ -38,7 +38,7 @@ class Settings(BaseSettings):
     POSTGRES_PASSWORD: str = BASE_POSTGRES_PASSWORD
     POSTGRES_DB: str = "example_db"
     POSTGRES_SCHEMA: str = "public"
-    POSTGRES_ENGINE: str = "asyncpg+postgresql"
+    POSTGRES_ENGINE: str = "postgresql+asyncpg"
 
     # Настройки соединения с БД
     DATABASE_URL: str | None = None

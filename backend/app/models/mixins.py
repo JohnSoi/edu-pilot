@@ -1,5 +1,5 @@
 from datetime import datetime
-from uuid import UUID
+from uuid import UUID, uuid4
 
 from sqlalchemy import UUID as SQL_UUID
 from sqlalchemy import DateTime, func
@@ -7,7 +7,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 
 
 class UuidMixin:
-    uuid: Mapped[UUID] = mapped_column(SQL_UUID(as_uuid=True), primary_key=True, server_default=func.uuid_generate_v4())
+    uuid: Mapped[UUID] = mapped_column(SQL_UUID(as_uuid=True), default=uuid4)
 
 
 class TimestampMixin:

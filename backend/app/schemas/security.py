@@ -2,7 +2,7 @@ from datetime import datetime
 
 from pydantic import BaseModel
 
-from app.core.security.consts import TokenType, TOKEN_TEXT_TYPE
+from app.core.security.consts import TOKEN_TEXT_TYPE, TokenType
 
 
 class TokenPayload(BaseModel):

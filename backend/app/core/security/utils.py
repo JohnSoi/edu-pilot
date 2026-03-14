@@ -4,8 +4,9 @@ from datetime import UTC, datetime, timedelta
 from jose import jwt
 
 from app.core.config import Settings, get_settings
-from .consts import TokenType, REFRESH_TOKEN_LENGTH
-from ...schemas.security import TokenData
+from app.schemas.security import TokenData
+
+from .consts import REFRESH_TOKEN_LENGTH, TokenType
 
 settings: Settings = get_settings()
 
@@ -31,7 +32,7 @@ def create_refresh_token(
         role_code,
         branch_id,
         expires_delta,
-        {"type": TokenType.REFRESH, "jti": secrets.token_urlsafe(REFRESH_TOKEN_LENGTH)}
+        {"type": TokenType.REFRESH, "jti": secrets.token_urlsafe(REFRESH_TOKEN_LENGTH)},
     )
 
 
@@ -69,13 +70,18 @@ def _create_token(
 
 def _decode_token(token: str, verify_exp: bool = True) -> TokenData | None:
     try:
-        payload: dict = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM],
-                                   options={"verify_exp": verify_exp})
+        payload: dict = jwt.decode(
+            token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM], options={"verify_exp": verify_exp}
+        )
 
         if not all(map(bool, (payload.get(field) for field in ("user_id", "role_code", "type")))):
             return None
 
-        return TokenData(user_id=payload.get("user_id"), role_code=payload.get("role_code"),
-                         branch_id=payload.get("branch_id"), type=payload.get("type"))
+        return TokenData(
+            user_id=payload.get("user_id"),
+            role_code=payload.get("role_code"),
+            branch_id=payload.get("branch_id"),
+            type=payload.get("type"),
+        )
     except Exception:
         return None

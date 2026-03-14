@@ -4,8 +4,9 @@ import string
 from passlib.context import CryptContext
 
 from app.core.config import Settings, get_settings
-from app.schemas.security import TokenResponse, TokenData
-from .consts import BCRYPT_ROUNDS, TokenType, TOKEN_TEXT_TYPE, ADMIN_ROLE_CODE
+from app.schemas.security import TokenData, TokenResponse
+
+from .consts import ADMIN_ROLE_CODE, BCRYPT_ROUNDS, TOKEN_TEXT_TYPE, TokenType
 from .utils import create_access_token, create_refresh_token, verify_token
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto", bcrypt__rounds=BCRYPT_ROUNDS)
@@ -32,7 +33,7 @@ def create_tokens(user_id: int, role_code: str, branch_id: int | None = None) ->
     return TokenResponse(
         access_token=create_access_token(user_id, role_code, branch_id),
         refresh_token=create_refresh_token(user_id, role_code, branch_id),
-        expires_in=settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60
+        expires_in=settings.ACCESS_TOKEN_EXPIRE_MINUTES * 60,
     )
 
 

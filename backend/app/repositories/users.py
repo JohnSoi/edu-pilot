@@ -14,7 +14,7 @@ class UserRepository(BaseRepository[Users]):
             payload["password"] = get_password_hash(payload["password"])
 
         payload["role_id"] = await RoleRepository(self._db).get_id_by_code(payload["role_code"])
-        del payload["role"]
+        del payload["role_code"]
 
         if payload.get("branch_uuid"):
             payload["branch_id"] = await BranchRepository(self._db).get_by_uuid(payload["branch_uuid"])

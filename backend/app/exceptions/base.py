@@ -7,3 +7,7 @@ class BaseAppException(HTTPException):
 
     def __init__(self, details: str | None = None) -> None:
         super().__init__(detail=details or self._DETAILS, status_code=self._STATUS_CODE)
+
+
+class ValidationError(BaseAppException):
+    _STATUS_CODE = status.HTTP_400_BAD_REQUEST

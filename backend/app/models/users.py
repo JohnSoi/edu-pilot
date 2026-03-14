@@ -1,10 +1,10 @@
-from datetime import datetime, date
+from datetime import date, datetime
 
-from sqlalchemy import String, DateTime, Date, ForeignKey
+from sqlalchemy import Date, DateTime, ForeignKey, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import BaseModel
-from .mixins import UuidMixin, TimestampMixin, SoftDeleteMixin
+from .mixins import SoftDeleteMixin, TimestampMixin, UuidMixin
 
 
 class Users(BaseModel, UuidMixin, TimestampMixin, SoftDeleteMixin):
@@ -18,9 +18,8 @@ class Users(BaseModel, UuidMixin, TimestampMixin, SoftDeleteMixin):
     date_deactivate: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=True)
     date_birthday: Mapped[date] = mapped_column(Date, nullable=False)
 
-    role_id: Mapped[int] = mapped_column(ForeignKey('roles.id'))
-    branch_id: Mapped[int] = mapped_column(ForeignKey('branches.id'))
+    role_id: Mapped[int] = mapped_column(ForeignKey("roles.id"))
+    branch_id: Mapped[int] = mapped_column(ForeignKey("branches.id"))
 
     role = relationship("Roles")
     branch = relationship("Branches")
-

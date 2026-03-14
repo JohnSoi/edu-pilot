@@ -10,5 +10,4 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
         try:
             yield session
         finally:
-            if not session.is_closed:
-                session.close()
+            session.close()
